@@ -1,0 +1,49 @@
+{
+    "appTitle": "Brothers Creative",
+    "ok": "OK",
+    "slides": [
+        {
+            "title": "Welcome to Brothers Creative",
+            "description": "Discover and design your perfect home space with ease.",
+            "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnVybml0dXJlfGVufDB8fDB8fHww"
+        },
+        {
+            "title": "Design Your Space",
+            "description": "Visualize furniture in your home.",
+            "image": "https://media.istockphoto.com/id/1212526330/photo/bohemian-living-room-interior-3d-render.jpg?s=612x612&w=0&k=20&c=iIQ5wqa4NYpLn0YJvT_NAzMilwTFkTlprwbXAasOn9s="
+        },
+        {
+            "title": "Explore Our Collection",
+            "description": "Find a wide range of furniture to suit your taste.",
+            "image": "https://www.marthastewart.com/thmb/gccz7GKeB8-ztKFaLPdER1J56tU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/how-to-clean-velvet-furniture-getty-0923-828af42423e842229e8757a38f88cf9b.jpg"
+        }
+    ],
+    "skip": "Skip",
+    "next": "Next",
+    "continueInEnglish": "Continue in English",
+    "contunueInArabic": "Continue in Arabic",
+    "getstarted": "Get Started",
+    "exhibition": "Exhibition",
+    "myorders": "My Orders",
+    "mybaskets": "My Baskets",
+    "myaccount": "My Account",
+    "searchfor": "Search for any product",
+    "ordernow": "Order now",
+    "seeall": "See all",
+    "taptoaddaddress": "Tap to add an address",
+    "offers": "Offers",
+    "partners": "Partners",
+    "recentsearches": "Your recent searches will appear here",
+    "popularsearches": "Popular searches",
+    "addaddress": "Add address",
+    "fullname": "Full Name",
+    "mobile": "Mobile",
+    "country": "Country",
+    "city": "City",
+    "buildingnamefloorapartment": "BuildingName/Floor/Apartment",
+    "save": "Save",
+    "anyorderyet": "You haven’t made any orders yet",
+    "everyorder": "Every order you make will be added here",
+    "nobaskets": "No baskets",
+    "nopendingbasket": "No pending baskets found"
+}

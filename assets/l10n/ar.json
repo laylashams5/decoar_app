@@ -1,0 +1,49 @@
+{
+    "appTitle": "برازر كريتف",
+    "ok": "نعم",
+    "slides": [
+        {
+            "title": "مرحبًا بك في برازر كريتف",
+            "description": "اكتشف وصمم مساحة منزلك المثالية بسهولة.",
+            "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnVybml0dXJlfGVufDB8fDB8fHww"
+        },
+        {
+            "title": "صمم مساحتك",
+            "description": "تخيل الأثاث في منزلك.",
+            "image": "https://media.istockphoto.com/id/1212526330/photo/bohemian-living-room-interior-3d-render.jpg?s=612x612&w=0&k=20&c=iIQ5wqa4NYpLn0YJvT_NAzMilwTFkTlprwbXAasOn9s="
+        },
+        {
+            "title": "استكشف مجموعتنا",
+            "description": "اعثر على مجموعة واسعة من الأثاث لتناسب ذوقك.",
+            "image": "https://www.marthastewart.com/thmb/gccz7GKeB8-ztKFaLPdER1J56tU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/how-to-clean-velvet-furniture-getty-0923-828af42423e842229e8757a38f88cf9b.jpg"
+        }
+    ],
+    "skip": "تخطى",
+    "next": "التالي",
+    "continueInEnglish": "استمر باللغة الانجليزية",
+    "contunueInArabic": "استمر باللغة العربية",
+    "getstarted": "البدء",
+    "exhibition": "المعرض",
+    "myorders": "طلباتي",
+    "mybaskets": "سلتي",
+    "myaccount": "حسابي",
+    "searchfor": "البحث عن أي منتج",
+    "ordernow": "اطلب الآن",
+    "seeall": "مشاهدة الكل",
+    "taptoaddaddress": "انقر لإضافة عنوان",
+    "offers": "العروض",
+    "partners": "الشركاء",
+    "recentsearches": "ستظهر عمليات البحث الأخيرة هنا",
+    "popularsearches": "عمليات البحث المتكررة",
+    "addaddress": "اضف عنوان",
+    "fullname": "الاسم الكامل",
+    "mobile": "الجوّال",
+    "country": "البلد",
+    "city": "مدينة",
+    "buildingnamefloorapartment": "اسم المبنى/الطابق/الشقة",
+    "save": "حفظ",
+    "anyorderyet": "لم تقم بإجراء أي طلبات بعد",
+    "everyorder": "سيتم إضافة كل طلب تقوم به هنا",
+    "nobaskets": "لا توجد منتجات",
+    "nopendingbasket": "لم يتم العثور على منتجات معلقة في السلة "
+}
