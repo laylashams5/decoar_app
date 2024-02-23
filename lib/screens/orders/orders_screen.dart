@@ -20,19 +20,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
       appBar: AppBar(
         elevation: 0,
         title: Text(
-          localizations!.translate('mybaskets'),
+          localizations!.translate('myorders'),
           style: TextStyle(
               fontSize: 18,
               color: whiteColor,
               fontFamily: languageProvider.locale.languageCode == 'en'
                   ? 'Tajawal'
                   : 'Cairo'),
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: whiteColor, size: 20),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
         ),
       ),
       body: Center(

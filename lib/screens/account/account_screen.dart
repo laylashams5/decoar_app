@@ -28,12 +28,6 @@ class _AccountScreenState extends State<AccountScreen> {
                   ? 'Tajawal'
                   : 'Cairo'),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: whiteColor, size: 20),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
       ),
       body: const SingleChildScrollView(
           child: Column(

@@ -1,3 +1,5 @@
+import 'package:decoar/providers/cart_provider.dart';
+import 'package:decoar/providers/favorite_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:decoar/helpers/shared_preferences.dart';
@@ -20,5 +22,7 @@ void main() async {
         create: (_) => ThemeProvider(isDarkMode: isDarkMode)),
     ChangeNotifierProvider(
         create: (_) => LocalizationProvider(selectedLanguage)),
+    ChangeNotifierProvider(create: (_) => CartProvider()),
+    ChangeNotifierProvider(create: (_) => FavoriteProvider()),
   ], child: const MyApp()));
 }

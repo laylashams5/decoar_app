@@ -10,12 +10,12 @@
         {
             "title": "Design Your Space",
             "description": "Visualize furniture in your home.",
-            "image": "https://media.istockphoto.com/id/1212526330/photo/bohemian-living-room-interior-3d-render.jpg?s=612x612&w=0&k=20&c=iIQ5wqa4NYpLn0YJvT_NAzMilwTFkTlprwbXAasOn9s="
+            "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnVybml0dXJlfGVufDB8fDB8fHww"
         },
         {
             "title": "Explore Our Collection",
             "description": "Find a wide range of furniture to suit your taste.",
-            "image": "https://www.marthastewart.com/thmb/gccz7GKeB8-ztKFaLPdER1J56tU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/how-to-clean-velvet-furniture-getty-0923-828af42423e842229e8757a38f88cf9b.jpg"
+            "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnVybml0dXJlfGVufDB8fDB8fHww"
         }
     ],
     "skip": "Skip",
@@ -45,5 +45,15 @@
     "anyorderyet": "You haven’t made any orders yet",
     "everyorder": "Every order you make will be added here",
     "nobaskets": "No baskets",
-    "nopendingbasket": "No pending baskets found"
+    "nopendingbasket": "No pending baskets found",
+    "featuredproducts": "Featured Products",
+    "total": "Total",
+    "sar": "SAR",
+    "clearCart": "Clear Cart",
+    "clearCartConfirmation": "Are you sure you want to clear all items from your cart?",
+    "cancel": "Cancel",
+    "clear": "Clear",
+    "viewcart": "View Cart",
+    "addtocart": "has been add to cart",
+    "removefromcart": "has been removed from cart"
 }

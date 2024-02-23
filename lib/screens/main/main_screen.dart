@@ -2,14 +2,18 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:decoar/helpers/app_constants.dart';
 import 'package:decoar/helpers/slide_route.dart';
 import 'package:decoar/localization/app_localizations.dart';
+import 'package:decoar/providers/cart_provider.dart';
 import 'package:decoar/screens/add_address/add_address_screen.dart';
 import 'package:decoar/screens/cart/cart_screen.dart';
 import 'package:decoar/screens/categories/categories_screen.dart';
 import 'package:decoar/screens/search/search_screen.dart';
 import 'package:decoar/theme/app_theme.dart';
+import 'package:decoar/widgets/cart_button_widget.dart';
 import 'package:decoar/widgets/category_tile_widget.dart';
+import 'package:decoar/widgets/product_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -116,6 +120,44 @@ class _MainScreenState extends State<MainScreen> {
       "name": 'Ashley',
     },
   ];
+  List products = [
+    {
+      "id": "1",
+      "name": 'منتج ١',
+      "image": 'https://m.media-amazon.com/images/I/51zVJbBSksL._AC_SY879_.jpg',
+      "price": 99.99,
+      "originalPrice": 149.99,
+      "discount": 0.20,
+    },
+    {
+      "id": "2",
+      "name": 'منتج ٢',
+      "image":
+          'https://fatimafurniture.ae/wp-content/uploads/2022/11/Flared-Arm-Tufted-Velvet-3-Seater-Sofa-1.jpg',
+      "price": 79.99,
+      "originalPrice": 89.99,
+      "discount": 0.10,
+    },
+    {
+      "id": "3",
+      "name": 'منتج ٣',
+      "image":
+          'https://m.media-amazon.com/images/I/81Ddh54rbQL._AC_UF1000,1000_QL80_.jpg',
+      "price": 49.99,
+      "originalPrice": 69.99,
+      "discount": 0.25,
+    },
+    {
+      "id": "4",
+      "name": 'منتج ٤',
+      "image":
+          'https://www.ikea.com/ae/en/images/products/paerup-2-seat-sofa-gunnared-dark-grey__1041901_pe841181_s5.jpg',
+      "price": 49.99,
+      "originalPrice": 69.99,
+      "discount": 0.25,
+    },
+  ];
+
   void _goToSearchScreen(BuildContext context) {
     Navigator.of(context).push(
       SlideRoute(
@@ -139,6 +181,8 @@ class _MainScreenState extends State<MainScreen> {
       });
     }
 
+    final cart = Provider.of<CartProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 140,
@@ -155,12 +199,8 @@ class _MainScreenState extends State<MainScreen> {
                   height: 30,
                   color: whiteColor,
                 ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.shopping_cart_outlined,
-                    color: whiteColor,
-                    size: 30,
-                  ),
+                CartButtonWithBadge(
+                  itemCount: cart.items.isEmpty ? 0 : cart.items.length,
                   onPressed: () {
                     Navigator.of(context).push(
                       SlideRoute(
@@ -406,6 +446,37 @@ class _MainScreenState extends State<MainScreen> {
                 );
               },
             ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            child: Text(
+              localizations.translate('featuredproducts'),
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1 / 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              final product = products[index];
+              return ProductTileWidget(
+                product: product,
+              );
+            },
           ),
           const SizedBox(
             height: 30,

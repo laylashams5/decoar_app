@@ -10,12 +10,12 @@
         {
             "title": "صمم مساحتك",
             "description": "تخيل الأثاث في منزلك.",
-            "image": "https://media.istockphoto.com/id/1212526330/photo/bohemian-living-room-interior-3d-render.jpg?s=612x612&w=0&k=20&c=iIQ5wqa4NYpLn0YJvT_NAzMilwTFkTlprwbXAasOn9s="
+            "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnVybml0dXJlfGVufDB8fDB8fHww"
         },
         {
             "title": "استكشف مجموعتنا",
             "description": "اعثر على مجموعة واسعة من الأثاث لتناسب ذوقك.",
-            "image": "https://www.marthastewart.com/thmb/gccz7GKeB8-ztKFaLPdER1J56tU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/how-to-clean-velvet-furniture-getty-0923-828af42423e842229e8757a38f88cf9b.jpg"
+            "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnVybml0dXJlfGVufDB8fDB8fHww"
         }
     ],
     "skip": "تخطى",
@@ -45,5 +45,15 @@
     "anyorderyet": "لم تقم بإجراء أي طلبات بعد",
     "everyorder": "سيتم إضافة كل طلب تقوم به هنا",
     "nobaskets": "لا توجد منتجات",
-    "nopendingbasket": "لم يتم العثور على منتجات معلقة في السلة "
+    "nopendingbasket": "لم يتم العثور على منتجات معلقة في سلة التسوق ",
+    "featuredproducts": "المنتجات المميزة",
+    "total": "إجمالي",
+    "sar": "ريال",
+    "clearCart": "مسح منتجات سلة التسوق",
+    "clearCartConfirmation": "هل أنت متأكد من رغبتك في مسح كافة العناصر من سلة التسوق الخاصة بك؟",
+    "cancel": "إلغاء",
+    "clear": "مسح",
+    "viewcart": "عرض سلة التسوق",
+    "addtocart": "تمت إضافته إلى سلة التسوق",
+    "removefromcart": "تمت حذفه من سلة التسوق"
 }
