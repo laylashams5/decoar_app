@@ -12,7 +12,8 @@ class CartProvider with ChangeNotifier {
     return _items.length;
   }
 
-  void addItem(String productId, double price, String name, String image) {
+  void addItem(String productId, double price, String name, String image,
+      int? quantity) {
     if (_items.containsKey(productId)) {
       _items.update(
         productId,
@@ -32,19 +33,17 @@ class CartProvider with ChangeNotifier {
           title: name,
           imgUrl: image,
           price: price,
-          quantity: 1,
+          quantity: quantity ?? 1,
         ),
       );
     }
     notifyListeners();
-    debugPrint("Item added. Current items: $_items");
   }
 
   void removeItem(String productId) {
     if (_items.containsKey(productId)) {
       _items.remove(productId);
       notifyListeners();
-      debugPrint("Item removed. Current items: $_items"); // Debugging
     }
   }
 

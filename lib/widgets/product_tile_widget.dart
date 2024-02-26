@@ -8,6 +8,8 @@ import 'package:decoar/localization/localization_provider.dart';
 import 'package:decoar/providers/cart_provider.dart';
 import 'package:decoar/providers/favorite_provider.dart';
 import 'package:decoar/screens/cart/cart_screen.dart';
+import 'package:decoar/screens/favorite/favorite_screen.dart';
+import 'package:decoar/screens/product/product_screen.dart';
 import 'package:decoar/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -43,7 +45,14 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+            SlideRoute(
+              screen: ProductScreen(product: widget.product),
+              duration: const Duration(milliseconds: 500),
+            ),
+          );
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -70,6 +79,9 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
+                    textAlign: languageProvider.locale.languageCode == 'en'
+                        ? TextAlign.left
+                        : TextAlign.right,
                   ),
                   Row(
                     children: [
@@ -111,6 +123,27 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                             Provider.of<FavoriteProvider>(context,
                                     listen: false)
                                 .removeFavorite(widget.product['id']);
+                            showCustomSnackbar(
+                                context: context,
+                                message:
+                                    '${widget.product['name']} ${localizations.translate('removefromfav')}',
+                                onActionPressed: () {
+                                  Navigator.of(context).push(
+                                    SlideRoute(
+                                      screen: const FavoriteScreen(),
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                    ),
+                                  );
+                                },
+                                backgroundColor: greenColor,
+                                textColor: whiteColor,
+                                fontFamily:
+                                    languageProvider.locale.languageCode == 'en'
+                                        ? 'Tajawal'
+                                        : 'Cairo',
+                                actionLabel:
+                                    localizations.translate('viewfav'));
                           } else {
                             Provider.of<FavoriteProvider>(context,
                                     listen: false)
@@ -119,6 +152,27 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                                     widget.product['name'],
                                     widget.product['price'],
                                     widget.product['image']);
+                            showCustomSnackbar(
+                                context: context,
+                                message:
+                                    '${widget.product['name']} ${localizations.translate('addtofav')}',
+                                onActionPressed: () {
+                                  Navigator.of(context).push(
+                                    SlideRoute(
+                                      screen: const FavoriteScreen(),
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                    ),
+                                  );
+                                },
+                                backgroundColor: greenColor,
+                                textColor: whiteColor,
+                                fontFamily:
+                                    languageProvider.locale.languageCode == 'en'
+                                        ? 'Tajawal'
+                                        : 'Cairo',
+                                actionLabel:
+                                    localizations.translate('viewfav'));
                           }
                         },
                       ),
@@ -136,7 +190,8 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                                           widget.product['id'],
                                           widget.product['price'],
                                           widget.product['name'],
-                                          widget.product['image']),
+                                          widget.product['image'],
+                                          1),
                                   showCustomSnackbar(
                                       context: context,
                                       message:
@@ -157,7 +212,8 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                                               'en'
                                           ? 'Tajawal'
                                           : 'Cairo',
-                                      actionLabel: localizations.translate(''))
+                                      actionLabel:
+                                          localizations.translate('viewcart'))
                                 }
                               : {
                                   Provider.of<CartProvider>(context,
@@ -183,7 +239,8 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                                               'en'
                                           ? 'Tajawal'
                                           : 'Cairo',
-                                      actionLabel: localizations.translate(''))
+                                      actionLabel:
+                                          localizations.translate('viewcart'))
                                 };
                         },
                       ),

@@ -25,7 +25,11 @@ class FavoriteProvider with ChangeNotifier {
     return _favoriteItems.containsKey(id);
   }
 
-  List<FavoriteItem> get favoriteItems {
-    return _favoriteItems.values.toList();
+  Map<String, FavoriteItem> get favoriteItems {
+    return {..._favoriteItems};
+  }
+
+  int get itemCount {
+    return favoriteItems.length;
   }
 }

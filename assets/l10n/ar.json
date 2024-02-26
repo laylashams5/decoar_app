@@ -55,5 +55,20 @@
     "clear": "مسح",
     "viewcart": "عرض سلة التسوق",
     "addtocart": "تمت إضافته إلى سلة التسوق",
-    "removefromcart": "تمت حذفه من سلة التسوق"
+    "removefromcart": "تمت حذفه من سلة التسوق",
+    "favorite": "المفضلة",
+    "nopendingfav": "لا توجد منتجات مفضلة",
+    "addtofav": "تمت إضافتها إلى المفضلة",
+    "removefromfav": "تمت إزالته من المفضلة",
+    "viewfav": "عرض المفضلة",
+    "off": "خصم",
+    "info": "معلومات",
+    "addtobasket": "اضافة إلى السلة",
+    "orderno": "رقم الطلب",
+    "quantity": "الكمية",
+    "totalamount": "المبلغ الإجمالي",
+    "detail": "التفاصيل",
+    "delivered": "تم التسليم",
+    "processing": "جارٍ المعالجة",
+    "cancelled": "تم الالفاء"
 }

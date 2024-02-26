@@ -55,5 +55,20 @@
     "clear": "Clear",
     "viewcart": "View Cart",
     "addtocart": "has been add to cart",
-    "removefromcart": "has been removed from cart"
+    "removefromcart": "has been removed from cart",
+    "favorite": "Favorite",
+    "nopendingfav": "No pending favorites found",
+    "addtofav": "has been added to favorites",
+    "removefromfav": "has been removed from favorites",
+    "viewfav": "View favorites",
+    "off": "OFF",
+    "info": "Information",
+    "addtobasket": "Add to cart",
+    "orderno": "Order no",
+    "quantity": "Quantity",
+    "totalamount": "Total amount",
+    "detail": "Detail",
+    "delivered": "Delivered",
+    "processing": "Processing",
+    "cancelled": "Cancelled"
 }
