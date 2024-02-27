@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:decoar/helpers/slide_route.dart';
 import 'package:decoar/helpers/snackerbar_helper.dart';
+import 'package:decoar/helpers/translate_number_helper.dart';
 import 'package:decoar/localization/app_localizations.dart';
 import 'package:decoar/localization/localization_provider.dart';
 import 'package:decoar/screens/cart/cart_screen.dart';
@@ -149,8 +150,13 @@ class _ProductScreenState extends State<ProductScreen> {
                               controller: controller,
                               children: [
                                 CachedNetworkImage(
-                                    imageUrl: widget.product['image'],
-                                    fit: BoxFit.contain),
+                                  imageUrl: widget.product['image'],
+                                  fit: BoxFit.contain,
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                ),
                                 CachedNetworkImage(
                                     imageUrl: widget.product['image'],
                                     fit: BoxFit.contain),
@@ -192,7 +198,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            '${widget.product['discount'] * 100}% ${localizations!.translate('off')}',
+                            '${translateNumberToArabic(widget.product['discount'] * 100)}% ${localizations!.translate('off')}',
                             style: const TextStyle(
                                 color: whiteColor,
                                 fontWeight: FontWeight.bold,
@@ -287,7 +293,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     child: SafeArea(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
                               padding: const EdgeInsets.symmetric(
@@ -307,12 +313,12 @@ class _ProductScreenState extends State<ProductScreen> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    width: 130,
+                                    width: 100,
                                   ),
                                   Column(
                                     children: [
                                       Text(
-                                        ' ${widget.product['price']} ${localizations.translate('sar')}',
+                                        ' ${translateNumberToArabic(widget.product['price'])} ${localizations.translate('sar')}',
                                         style: const TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,
@@ -320,7 +326,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                         ),
                                       ),
                                       Text(
-                                        '${widget.product['originalPrice'].toStringAsFixed(2)} ${localizations.translate('sar')}',
+                                        '${translateNumberToArabic(widget.product['originalPrice'].toStringAsFixed(2))} ${localizations.translate('sar')}',
                                         style: const TextStyle(
                                           color: grayColor,
                                           decoration:

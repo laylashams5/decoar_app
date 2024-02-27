@@ -23,7 +23,7 @@
     "continueInEnglish": "استمر باللغة الانجليزية",
     "contunueInArabic": "استمر باللغة العربية",
     "getstarted": "البدء",
-    "exhibition": "المعرض",
+    "home": "الرئيسبة",
     "myorders": "طلباتي",
     "mybaskets": "سلتي",
     "myaccount": "حسابي",
@@ -46,7 +46,7 @@
     "everyorder": "سيتم إضافة كل طلب تقوم به هنا",
     "nobaskets": "لا توجد منتجات",
     "nopendingbasket": "لم يتم العثور على منتجات معلقة في سلة التسوق ",
-    "featuredproducts": "المنتجات المميزة",
+    "featuredproducts": "المنتجات الفريدة",
     "total": "إجمالي",
     "sar": "ريال",
     "clearCart": "مسح منتجات سلة التسوق",
@@ -70,5 +70,10 @@
     "detail": "التفاصيل",
     "delivered": "تم التسليم",
     "processing": "جارٍ المعالجة",
-    "cancelled": "تم الالفاء"
+    "cancelled": "تم الالفاء",
+    "orderdetails": "تفاصيل الطلب",
+    "date": "تاريخ الطلب",
+    "products": "منتجات",
+    "status": "حالة الطلب",
+    "howhelp": "كيف يمكننا مساعدتك"
 }

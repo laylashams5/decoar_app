@@ -1,3 +1,5 @@
+import 'package:decoar/helpers/snackerbar_helper.dart';
+import 'package:decoar/helpers/translate_number_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:decoar/localization/app_localizations.dart';
@@ -137,6 +139,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget _buildCartList(
       CartProvider cart, BoxConstraints constraints, BuildContext context) {
     final localizations = AppLocalizations.of(context);
+    final languageProvider = Provider.of<LocalizationProvider>(context);
 
     double calculateTotalPrice() {
       double totalPrice = 0.0;
@@ -205,7 +208,8 @@ class _CartScreenState extends State<CartScreen> {
                               onPressed: () =>
                                   cart.increaseItemQuantity(cartItem.id),
                             ),
-                            Text('${cartItem.quantity}x',
+                            Text(
+                                '${translateNumberToArabic(cartItem.quantity)}x',
                                 style: TextStyle(
                                     fontSize: constraints.maxHeight * 0.02)),
                             IconButton(
@@ -220,14 +224,29 @@ class _CartScreenState extends State<CartScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '${(cartItem.price * cartItem.quantity).toStringAsFixed(2)} ${localizations!.translate('sar')} ',
+                              '${translateNumberToArabic((cartItem.price * cartItem.quantity).toStringAsFixed(2))} ${localizations!.translate('sar')} ',
                               style: TextStyle(
                                   fontSize: constraints.maxHeight * 0.025),
                             ),
                             IconButton(
                               icon: const Icon(Icons.delete_outline,
                                   color: grayColor),
-                              onPressed: () => cart.removeItem(cartItem.id),
+                              onPressed: () => {
+                                cart.removeItem(cartItem.id),
+                                showCustomSnackbar(
+                                    context: context,
+                                    message:
+                                        '${cartItem.title} ${localizations.translate('removefromcart')}',
+                                    onActionPressed: () {},
+                                    backgroundColor: redColor,
+                                    textColor: whiteColor,
+                                    fontFamily:
+                                        languageProvider.locale.languageCode ==
+                                                'en'
+                                            ? 'Tajawal'
+                                            : 'Cairo',
+                                    actionLabel: localizations.translate(''))
+                              },
                             ),
                           ],
                         )
@@ -254,7 +273,7 @@ class _CartScreenState extends State<CartScreen> {
                   fontSize: 18, fontWeight: FontWeight.bold, color: whiteColor),
             ),
             Text(
-              '${calculateTotalPrice().toStringAsFixed(2)} ${localizations.translate('sar')} ',
+              '${translateNumberToArabic(calculateTotalPrice().toStringAsFixed(2))} ${localizations.translate('sar')} ',
               style: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold, color: whiteColor),
             ),

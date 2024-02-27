@@ -1,5 +1,8 @@
+import 'package:decoar/helpers/slide_route.dart';
+import 'package:decoar/helpers/translate_number_helper.dart';
 import 'package:decoar/localization/app_localizations.dart';
 import 'package:decoar/localization/localization_provider.dart';
+import 'package:decoar/screens/order/order_screen.dart';
 import 'package:decoar/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +23,15 @@ class _OrdersScreenState extends State<OrdersScreen>
       'quantity': '01',
       'totalAmount': '40',
       'status': 'Delivered',
+      'products': [
+        {
+          'name': 'Chair',
+          'quantity': '1',
+          'price': '40',
+          'image':
+              'https://m.media-amazon.com/images/I/51W6a5Rho2L._AC_SY879_.jpg',
+        },
+      ],
     },
     {
       'orderNo': '204',
@@ -27,6 +39,22 @@ class _OrdersScreenState extends State<OrdersScreen>
       'quantity': '02',
       'totalAmount': '80',
       'status': 'Delivered',
+      'products': [
+        {
+          'name': 'Table',
+          'quantity': '1',
+          'price': '50',
+          'image':
+              'https://m.media-amazon.com/images/I/5155intNaDL._AC_SX679_.jpg',
+        },
+        {
+          'name': 'Lamp',
+          'quantity': '1',
+          'price': '30',
+          'image':
+              'https://m.media-amazon.com/images/I/51xlYIGJwgL.__AC_SY445_SX342_QL70_ML2_.jpg',
+        },
+      ],
     },
     {
       'orderNo': '205',
@@ -34,6 +62,7 @@ class _OrdersScreenState extends State<OrdersScreen>
       'quantity': '02',
       'totalAmount': '80',
       'status': 'Cancelled',
+      'products': [],
     },
     {
       'orderNo': '206',
@@ -41,8 +70,10 @@ class _OrdersScreenState extends State<OrdersScreen>
       'quantity': '02',
       'totalAmount': '60',
       'status': 'Processing',
+      'products': [],
     },
   ];
+
   late TabController _tabController;
 
   List<Map<String, dynamic>> getOrdersByStatus(String status) {
@@ -147,8 +178,8 @@ class OrdersList extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              '${localizations!.translate('orderno')} ${order['orderNo']}'),
-                          Text(order['date']),
+                              '${localizations!.translate('orderno')} ${translateNumberToArabic(order['orderNo'])}'),
+                          Text(translateNumberToArabic(order['date'])),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -156,9 +187,9 @@ class OrdersList extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              '${localizations.translate('quantity')}: ${order['quantity']}'),
+                              '${localizations.translate('quantity')}: ${translateNumberToArabic(order['quantity'])}'),
                           Text(
-                              '${localizations.translate('totalamount')}:  ${order['totalAmount']} ${localizations.translate('sar')}'),
+                              '${localizations.translate('totalamount')}:  ${translateNumberToArabic(order['totalAmount'])} ${localizations.translate('sar')}'),
                         ],
                       ),
                       const SizedBox(height: 8),
@@ -166,7 +197,16 @@ class OrdersList extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           OutlinedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                SlideRoute(
+                                  screen: OrderScreen(
+                                    order: order,
+                                  ),
+                                  duration: const Duration(milliseconds: 500),
+                                ),
+                              );
+                            },
                             child: Text(
                               localizations.translate('detail'),
                               style: const TextStyle(color: primaryColor),

@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.store,
               color: _selectedIndex == 0 ? primaryColor : greyColor,
             ),
-            label: localizations!.translate('exhibition'),
+            label: localizations!.translate('home'),
           ),
           BottomNavigationBarItem(
             icon: Icon(

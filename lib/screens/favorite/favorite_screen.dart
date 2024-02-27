@@ -114,6 +114,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 child: CachedNetworkImage(
                   imageUrl: favItem.imgUrl,
                   fit: BoxFit.contain,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 )),
           ),
         );

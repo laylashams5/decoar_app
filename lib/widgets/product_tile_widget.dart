@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:decoar/helpers/slide_route.dart';
 import 'package:decoar/helpers/snackerbar_helper.dart';
+import 'package:decoar/helpers/translate_number_helper.dart';
 import 'package:decoar/localization/app_localizations.dart';
 import 'package:decoar/localization/localization_provider.dart';
 import 'package:decoar/providers/cart_provider.dart';
@@ -62,6 +63,9 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                 imageUrl: widget.product['image'],
                 width: double.infinity,
                 height: 200,
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             Container(
@@ -86,7 +90,7 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                   Row(
                     children: [
                       Text(
-                        '${widget.product['price'].toStringAsFixed(2)} ${localizations!.translate(
+                        '${translateNumberToArabic(widget.product['price'].toStringAsFixed(2))} ${localizations!.translate(
                           'sar',
                         )}',
                         style: TextStyle(
@@ -100,7 +104,7 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                       if (widget.product.containsKey('discount') &&
                           widget.product['discount'] > 0)
                         Text(
-                          '${widget.product['originalPrice'].toStringAsFixed(2)} ${localizations.translate('sar')}',
+                          '${translateNumberToArabic(widget.product['originalPrice'].toStringAsFixed(2))} ${localizations.translate('sar')}',
                           style: const TextStyle(
                             color: grayColor,
                             decoration: TextDecoration.lineThrough,

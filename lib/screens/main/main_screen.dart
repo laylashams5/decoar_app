@@ -327,12 +327,12 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.location_on, color: primaryColor),
+                    const Icon(Icons.face_retouching_natural_sharp,
+                        color: primaryColor),
                     const SizedBox(width: 8.0),
                     Expanded(
                       child: Text(
-                        deliveryAddress ??
-                            localizations.translate('taptoaddaddress'),
+                        deliveryAddress ?? localizations.translate('howhelp'),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
