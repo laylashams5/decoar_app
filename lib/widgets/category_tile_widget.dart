@@ -27,7 +27,10 @@ class CategoryTileWidget extends StatelessWidget {
             imageUrl: category['image'],
             fit: BoxFit.cover,
             placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
+            errorWidget: (context, url, error) => const Icon(
+              Icons.photo,
+              color: grayColor,
+            ),
           )),
         ),
         Flexible(

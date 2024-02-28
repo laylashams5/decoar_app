@@ -2,14 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:decoar/helpers/app_constants.dart';
 import 'package:decoar/helpers/slide_route.dart';
 import 'package:decoar/localization/app_localizations.dart';
+import 'package:decoar/localization/localization_provider.dart';
 import 'package:decoar/providers/cart_provider.dart';
-import 'package:decoar/screens/add_address/add_address_screen.dart';
-import 'package:decoar/screens/cart/cart_screen.dart';
+import 'package:decoar/screens/account/account_screen.dart';
 import 'package:decoar/screens/categories/categories_screen.dart';
+import 'package:decoar/screens/gallery/gallery_screen.dart';
 import 'package:decoar/screens/products/products_screen.dart';
 import 'package:decoar/screens/search/search_screen.dart';
 import 'package:decoar/theme/app_theme.dart';
-import 'package:decoar/widgets/cart_button_widget.dart';
 import 'package:decoar/widgets/category_tile_widget.dart';
 import 'package:decoar/widgets/product_tile_widget.dart';
 import 'package:flutter/material.dart';
@@ -149,6 +149,21 @@ class _MainScreenState extends State<MainScreen> {
       "description": 'up to 70% OFF',
     },
   ];
+  final List<Map<String, dynamic>> galleryPhotos = [
+    {
+      "imagePath":
+          'https://i.pinimg.com/564x/23/34/ad/2334add890050736165fb0b9237c3e62.jpg',
+    },
+    {
+      "imagePath":
+          'https://i.pinimg.com/564x/0c/0d/4e/0c0d4e69c902e3cd5cf3e1f0c7e35029.jpg',
+    },
+    {
+      "imagePath":
+          'https://i.pinimg.com/564x/7b/c8/4e/7bc84e48d2852032be7274da6ea9667f.jpg',
+    },
+  ];
+
   final List<Map<String, dynamic>> partners = [
     {
       "logoPath":
@@ -176,6 +191,34 @@ class _MainScreenState extends State<MainScreen> {
       "name": 'Ashley',
     },
   ];
+  final List<Map<String, dynamic>> vendors = [
+    {
+      "logoPath":
+          'https://upload.wikimedia.org/wikipedia/commons/4/4a/Amazon_icon.svg',
+      "name": 'Amazon',
+    },
+    {
+      "logoPath":
+          'https://upload.wikimedia.org/wikipedia/commons/a/a9/Apple_logo_black.svg',
+      "name": 'Apple',
+    },
+    {
+      "logoPath":
+          'https://upload.wikimedia.org/wikipedia/commons/2/26/Google_2015_logo.svg',
+      "name": 'Google',
+    },
+    {
+      "logoPath":
+          'https://upload.wikimedia.org/wikipedia/commons/c/cf/Microsoft_logo_(2012).svg',
+      "name": 'Microsoft',
+    },
+    {
+      "logoPath":
+          'https://upload.wikimedia.org/wikipedia/commons/f/fa/Walmart_logo.svg',
+      "name": 'Walmart',
+    },
+  ];
+
   List products = [
     {
       "id": "1",
@@ -239,59 +282,92 @@ class _MainScreenState extends State<MainScreen> {
 
     final cart = Provider.of<CartProvider>(context);
 
+    final languageProvider = Provider.of<LocalizationProvider>(context);
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 140,
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(
-                  AppConstants.logoHeader,
-                  width: 30,
-                  height: 30,
-                  color: whiteColor,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(140),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: primaryColor,
+            boxShadow: [
+              BoxShadow(
+                color: lightBlackColor,
+                offset: Offset(0, 2),
+                blurRadius: 0,
+                spreadRadius: 1,
+              ),
+            ],
+          ),
+          child: AppBar(
+            toolbarHeight: 140,
+            automaticallyImplyLeading: false,
+            title: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Image.asset(
+                          AppConstants.logoHeader,
+                          width: 30,
+                          height: 30,
+                          color: whiteColor,
+                        ),
+                        Text(
+                          localizations!.translate('appTitle'),
+                          style: TextStyle(
+                              fontFamily:
+                                  languageProvider.locale.languageCode == 'en'
+                                      ? 'Tajawal'
+                                      : 'Cairo',
+                              color: whiteColor,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            SlideRoute(
+                              screen: const AccountScreen(),
+                              duration: const Duration(milliseconds: 500),
+                            ),
+                          );
+                        },
+                        child: const Icon(Icons.more_vert_rounded,
+                            color: whiteColor, size: 30)),
+                  ],
                 ),
-                CartButtonWithBadge(
-                  itemCount: cart.items.isEmpty ? 0 : cart.items.length,
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      SlideRoute(
-                        screen: const CartScreen(),
-                        duration: const Duration(milliseconds: 500),
+                const SizedBox(height: 10),
+                GestureDetector(
+                    onTap: () {
+                      _goToSearchScreen(context);
+                    },
+                    child: AbsorbPointer(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: localizations.translate('searchfor'),
+                          prefixIcon:
+                              const Icon(Icons.search, color: greyColor),
+                          contentPadding: EdgeInsets.zero,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+                          filled: true,
+                          fillColor: whiteColor,
+                        ),
                       ),
-                    );
-                  },
-                ),
+                    ))
               ],
             ),
-            const SizedBox(height: 8),
-            GestureDetector(
-                onTap: () {
-                  _goToSearchScreen(context);
-                },
-                child: AbsorbPointer(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: localizations!.translate('searchfor'),
-                      prefixIcon: const Icon(Icons.search, color: greyColor),
-                      contentPadding: EdgeInsets.zero,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
-                      filled: true,
-                      fillColor: whiteColor,
-                    ),
-                  ),
-                ))
-          ],
+            elevation: 0,
+            backgroundColor: primaryColor,
+          ),
         ),
-        elevation: 0,
-        backgroundColor: primaryColor,
       ),
       body: SingleChildScrollView(
           child: Column(
@@ -300,16 +376,7 @@ class _MainScreenState extends State<MainScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  SlideRoute(
-                    screen: AddAddressScreen(
-                      onAddressSaved: updateDeliveryAddress,
-                    ),
-                    duration: const Duration(milliseconds: 500),
-                  ),
-                );
-              },
+              onTap: () {},
               child: Container(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 12.0, vertical: 12.0),
@@ -352,7 +419,7 @@ class _MainScreenState extends State<MainScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  localizations.translate('ordernow'),
+                  localizations.translate('categories'),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -447,6 +514,68 @@ class _MainScreenState extends State<MainScreen> {
           ),
           Padding(
             padding:
+                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  localizations.translate('gallery'),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      SlideRoute(
+                        screen: const GalleryScreen(),
+                        duration: const Duration(milliseconds: 500),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    localizations.translate('seeall'),
+                    style: const TextStyle(fontSize: 14, color: primaryColor),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 150,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: galleryPhotos.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15.0),
+                    child: Stack(
+                      children: <Widget>[
+                        CachedNetworkImage(
+                            imageUrl: galleryPhotos[index]['imagePath'],
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => const Icon(
+                                  Icons.photo,
+                                  color: grayColor,
+                                ))
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             child: Text(
               localizations.translate('offers'),
@@ -469,14 +598,15 @@ class _MainScreenState extends State<MainScreen> {
                     child: Stack(
                       children: <Widget>[
                         CachedNetworkImage(
-                          imageUrl: offers[index]['imagePath'],
-                          width: MediaQuery.of(context).size.width * 0.8,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) =>
-                              const CircularProgressIndicator(),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        )
+                            imageUrl: offers[index]['imagePath'],
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) =>
+                                const CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => const Icon(
+                                  Icons.photo,
+                                  color: grayColor,
+                                ))
                       ],
                     ),
                   ),
@@ -491,7 +621,7 @@ class _MainScreenState extends State<MainScreen> {
             padding:
                 const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
             child: Text(
-              localizations.translate('partners'),
+              localizations.translate('clients'),
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -510,7 +640,6 @@ class _MainScreenState extends State<MainScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Card(
-                        elevation: 3,
                         child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ClipRRect(
@@ -522,11 +651,71 @@ class _MainScreenState extends State<MainScreen> {
                                   placeholder: (context, url) =>
                                       const CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
+                                      const Icon(
+                                    Icons.photo,
+                                    color: grayColor,
+                                  ),
                                 ))),
                       ),
                       Text(
                         partners[index]['name'],
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+            child: Text(
+              localizations.translate('vendors'),
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 120,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: vendors.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Card(
+                        child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(5.0),
+                                child: CachedNetworkImage(
+                                  imageUrl: vendors[index]['logoPath'],
+                                  width: 60,
+                                  height: 60,
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(
+                                    Icons.photo,
+                                    size: 60,
+                                    color: grayColor,
+                                  ),
+                                ))),
+                      ),
+                      Text(
+                        vendors[index]['name'],
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

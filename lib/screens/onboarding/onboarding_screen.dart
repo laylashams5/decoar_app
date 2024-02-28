@@ -4,6 +4,7 @@ import 'package:decoar/helpers/slide_route.dart';
 import 'package:decoar/localization/app_localizations.dart';
 import 'package:decoar/localization/localization_provider.dart';
 import 'package:decoar/models/onboarding_model.dart';
+import 'package:decoar/screens/gallery/gallery_screen.dart';
 import 'package:decoar/screens/home/home_screen.dart';
 import 'package:decoar/theme/app_theme.dart';
 import 'package:decoar/widgets/language_selector_widget.dart';
@@ -71,20 +72,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   context: context);
             },
           ),
-          if (_currentPage != _pages.length - 1)
+          if (_currentPage == 0)
             Positioned(
               top: 40,
               right: 20,
               child: TextButton(
                 onPressed: () {
-                  _pageController.animateToPage(
-                    _pages.length - 1,
-                    duration: const Duration(milliseconds: 600),
-                    curve: Curves.easeInOut,
+                  Navigator.of(context).pushReplacement(
+                    SlideRoute(
+                      screen: const GalleryScreen(),
+                      duration: const Duration(milliseconds: 300),
+                    ),
                   );
                 },
                 child: Text(
-                  localizations!.translate('skip'),
+                  localizations!.translate('gallery'),
                   style: const TextStyle(
                     color: lightGreenColor,
                     fontSize: 16,
@@ -104,6 +106,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       if (_currentPage == 0)
                         LanguageSelectorWidget(
                           reloadSlides: loadLocalizationContent,
+                        ),
+                      if (_currentPage == 0)
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                              SlideRoute(
+                                screen: const HomeScreen(),
+                                duration: const Duration(milliseconds: 300),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            height: 58,
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.only(right: 20, left: 20),
+                            decoration: BoxDecoration(
+                                color: blackColor,
+                                borderRadius: BorderRadius.circular(12)),
+                            child: Text(
+                              localizations!.translate('home'),
+                              style: const TextStyle(
+                                color: whiteColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
                         ),
                       _buildPageIndicator(),
                       if (_currentPage != 0)

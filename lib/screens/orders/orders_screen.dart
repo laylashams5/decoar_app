@@ -98,6 +98,7 @@ class _OrdersScreenState extends State<OrdersScreen>
     final languageProvider = Provider.of<LocalizationProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         title: Text(
           localizations!.translate('myorders'),
@@ -165,7 +166,7 @@ class OrdersList extends StatelessWidget {
               return Card(
                 margin: const EdgeInsets.all(8.0),
                 color: whitegreyColor,
-                elevation: 3,
+                elevation: 1,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),

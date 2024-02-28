@@ -17,35 +17,38 @@ Widget OnboardingWidget({
           fit: BoxFit.cover,
           width: MediaQuery.of(context).size.width,
           placeholder: (context, url) => const CircularProgressIndicator(),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+          errorWidget: (context, url, error) => const Icon(
+            Icons.photo,
+            color: grayColor,
+          ),
         ),
       ),
       Container(
         color: blackColor.withOpacity(0.3),
       ),
-      Center(
+      const Center(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: whiteColor),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                description,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: whiteColor,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              // Text(
+              //   title,
+              //   style: const TextStyle(
+              //       fontSize: 24,
+              //       fontWeight: FontWeight.bold,
+              //       color: whiteColor),
+              //   textAlign: TextAlign.center,
+              // ),
+              // const SizedBox(height: 16),
+              // Text(
+              //   description,
+              //   style: const TextStyle(
+              //     fontSize: 18,
+              //     color: whiteColor,
+              //   ),
+              //   textAlign: TextAlign.center,
+              // ),
             ],
           ),
         ),

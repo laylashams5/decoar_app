@@ -84,7 +84,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         final favItem = favorite.favoriteItems.values.toList()[index];
 
         return Card(
-          elevation: 4,
           margin: const EdgeInsets.all(8),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -116,7 +115,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   fit: BoxFit.contain,
                   placeholder: (context, url) =>
                       const CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(
+                    Icons.photo,
+                    color: grayColor,
+                  ),
                 )),
           ),
         );

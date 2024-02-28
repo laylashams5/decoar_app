@@ -136,7 +136,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       appBar: AppBar(
         elevation: 0,
         title: Text(
-          localizations!.translate('ordernow'),
+          localizations!.translate('categories'),
           style: TextStyle(
               fontSize: 18,
               color: whiteColor,

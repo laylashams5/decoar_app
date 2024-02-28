@@ -65,7 +65,10 @@ class _ProductTileWidgetState extends State<ProductTileWidget> {
                 height: 200,
                 placeholder: (context, url) =>
                     const CircularProgressIndicator(),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                errorWidget: (context, url, error) => const Icon(
+                  Icons.photo,
+                  color: grayColor,
+                ),
               ),
             ),
             Container(

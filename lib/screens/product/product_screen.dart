@@ -155,7 +155,10 @@ class _ProductScreenState extends State<ProductScreen> {
                                   placeholder: (context, url) =>
                                       const CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
+                                      const Icon(
+                                    Icons.photo,
+                                    color: grayColor,
+                                  ),
                                 ),
                                 CachedNetworkImage(
                                     imageUrl: widget.product['image'],

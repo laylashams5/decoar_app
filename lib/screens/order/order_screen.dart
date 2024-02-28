@@ -45,7 +45,7 @@ class OrderScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Card(
-                elevation: 4,
+                elevation: 1,
                 color: whitegreyColor,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -86,8 +86,11 @@ class OrderScreen extends StatelessWidget {
                       fit: BoxFit.cover,
                       placeholder: (context, url) =>
                           const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                      errorWidget: (context, url, error) => const Icon(
+                        Icons.photo,
+                        size: 50,
+                        color: grayColor,
+                      ),
                     ),
                     title: Text(product['name'],
                         style: const TextStyle(fontWeight: FontWeight.bold)),
