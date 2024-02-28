@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:decoar/helpers/slide_route.dart';
+import 'package:decoar/helpers/snackerbar_helper.dart';
 import 'package:decoar/localization/app_localizations.dart';
 import 'package:decoar/localization/localization_provider.dart';
+import 'package:decoar/providers/favorite_provider.dart';
+import 'package:decoar/screens/favorite/favorite_screen.dart';
 import 'package:decoar/screens/gallery/image_slider_widget.dart';
 import 'package:decoar/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -19,26 +22,38 @@ class GalleryScreen extends StatefulWidget {
 class _GalleryScreenState extends State<GalleryScreen> {
   final List<Map<String, dynamic>> galleryPhotos = [
     {
+      "id": "1",
+      "name": "",
       "imagePath":
           'https://i.pinimg.com/564x/23/34/ad/2334add890050736165fb0b9237c3e62.jpg',
     },
     {
+      "id": "2",
+      "name": "",
       "imagePath":
           'https://i.pinimg.com/564x/0c/0d/4e/0c0d4e69c902e3cd5cf3e1f0c7e35029.jpg',
     },
     {
+      "id": "3",
+      "name": "",
       "imagePath":
           'https://i.pinimg.com/564x/7b/c8/4e/7bc84e48d2852032be7274da6ea9667f.jpg',
     },
     {
+      "id": "4",
+      "name": "",
       "imagePath":
           'https://i.pinimg.com/564x/94/fc/c5/94fcc5733d9d49f810717a50ac189263.jpg',
     },
     {
+      "id": "5",
+      "name": "",
       "imagePath":
           'https://i.pinimg.com/564x/9d/4a/8d/9d4a8dfb889206a27401e3a2eb6c8150.jpg',
     },
     {
+      "id": "6",
+      "name": "",
       "imagePath":
           'https://i.pinimg.com/564x/a2/07/52/a20752864c78cf0e0681e4eb9d693ab6.jpg',
     },
@@ -76,58 +91,116 @@ class _GalleryScreenState extends State<GalleryScreen> {
         child: StaggeredGridView.countBuilder(
           crossAxisCount: 4,
           itemCount: galleryPhotos.length,
-          itemBuilder: (BuildContext context, int index) => InkWell(
-            onTap: () {
-              Navigator.of(context).push(
-                SlideRoute(
-                  screen: ImageSliderWidget(
-                    initialPage: index,
-                    galleryPhotos: galleryPhotos,
+          itemBuilder: (BuildContext context, int index) {
+            final isFavorite = Provider.of<FavoriteProvider>(context)
+                .isFavorite(galleryPhotos[index]['id']);
+            return InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  SlideRoute(
+                    screen: ImageSliderWidget(
+                      initialPage: index,
+                      galleryPhotos: galleryPhotos,
+                    ),
+                    duration: const Duration(milliseconds: 500),
                   ),
-                  duration: const Duration(milliseconds: 500),
+                );
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
                 ),
-              );
-            },
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              clipBehavior: Clip.antiAlias,
-              child: Stack(
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: galleryPhotos[index]['imagePath'],
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => const Icon(
-                      Icons.photo,
-                      color: grayColor,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 2,
-                    right: 2,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: redColor.withOpacity(0.8),
-                        shape: BoxShape.circle,
+                clipBehavior: Clip.antiAlias,
+                child: Stack(
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl: galleryPhotos[index]['imagePath'],
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) => const Icon(
+                        Icons.photo,
+                        color: grayColor,
                       ),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.favorite_border,
-                          color: whiteColor,
+                    ),
+                    Positioned(
+                      bottom: 2,
+                      right: 2,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: redColor.withOpacity(0.8),
+                          shape: BoxShape.circle,
                         ),
-                        onPressed: () {},
+                        child: IconButton(
+                          icon: Icon(
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
+                            color: whiteColor,
+                          ),
+                          onPressed: () {
+                            if (isFavorite) {
+                              Provider.of<FavoriteProvider>(context,
+                                      listen: false)
+                                  .removeFavorite(galleryPhotos[index]['id']);
+                              showCustomSnackbar(
+                                  context: context,
+                                  message:
+                                      localizations.translate('removefromfav'),
+                                  onActionPressed: () {
+                                    Navigator.of(context).push(
+                                      SlideRoute(
+                                        screen: const FavoriteScreen(),
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                      ),
+                                    );
+                                  },
+                                  backgroundColor: greenColor,
+                                  textColor: whiteColor,
+                                  fontFamily:
+                                      languageProvider.locale.languageCode ==
+                                              'en'
+                                          ? 'Tajawal'
+                                          : 'Cairo',
+                                  actionLabel:
+                                      localizations.translate('viewfav'));
+                            } else {
+                              Provider.of<FavoriteProvider>(context,
+                                      listen: false)
+                                  .addFavorite(galleryPhotos[index]['id'], "",
+                                      0.0, galleryPhotos[index]['imagePath']);
+                              showCustomSnackbar(
+                                  context: context,
+                                  message: localizations.translate('addtofav'),
+                                  onActionPressed: () {
+                                    Navigator.of(context).push(
+                                      SlideRoute(
+                                        screen: const FavoriteScreen(),
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                      ),
+                                    );
+                                  },
+                                  backgroundColor: greenColor,
+                                  textColor: whiteColor,
+                                  fontFamily:
+                                      languageProvider.locale.languageCode ==
+                                              'en'
+                                          ? 'Tajawal'
+                                          : 'Cairo',
+                                  actionLabel:
+                                      localizations.translate('viewfav'));
+                            }
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
           staggeredTileBuilder: (int index) =>
               StaggeredTile.count(2, index.isEven ? 2.5 : 3),
           mainAxisSpacing: 8.0,

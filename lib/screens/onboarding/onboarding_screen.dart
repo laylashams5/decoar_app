@@ -75,10 +75,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           if (_currentPage == 0)
             Positioned(
               top: 40,
-              right: 20,
+              left: 20,
               child: TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
+                  Navigator.of(context).push(
                     SlideRoute(
                       screen: const GalleryScreen(),
                       duration: const Duration(milliseconds: 300),
@@ -89,6 +89,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   localizations!.translate('gallery'),
                   style: const TextStyle(
                     color: lightGreenColor,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          if (_currentPage == 0)
+            Positioned(
+              top: 40,
+              right: 20,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    SlideRoute(
+                      screen: const HomeScreen(),
+                      duration: const Duration(milliseconds: 300),
+                    ),
+                  );
+                },
+                child: Text(
+                  localizations!.translate('home'),
+                  style: const TextStyle(
+                    color: blackColor,
                     fontSize: 16,
                   ),
                 ),
@@ -106,33 +128,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       if (_currentPage == 0)
                         LanguageSelectorWidget(
                           reloadSlides: loadLocalizationContent,
-                        ),
-                      if (_currentPage == 0)
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).pushReplacement(
-                              SlideRoute(
-                                screen: const HomeScreen(),
-                                duration: const Duration(milliseconds: 300),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            height: 58,
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.only(right: 20, left: 20),
-                            decoration: BoxDecoration(
-                                color: blackColor,
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Text(
-                              localizations!.translate('home'),
-                              style: const TextStyle(
-                                color: whiteColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
                         ),
                       _buildPageIndicator(),
                       if (_currentPage != 0)
