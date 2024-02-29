@@ -4,14 +4,14 @@ import 'package:decoar/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class PaymentScreen extends StatefulWidget {
+  const PaymentScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<PaymentScreen> createState() => _PaymentScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _PaymentScreenState extends State<PaymentScreen> {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context);
@@ -21,7 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         automaticallyImplyLeading: false,
         elevation: 0,
         title: Text(
-          localizations!.translate('personal'),
+          localizations!.translate('paymentdetails'),
           style: TextStyle(
               fontSize: 18,
               color: whiteColor,

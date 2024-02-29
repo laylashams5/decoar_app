@@ -1,17 +1,18 @@
 import 'package:decoar/localization/app_localizations.dart';
-import 'package:decoar/localization/localization_provider.dart';
 import 'package:decoar/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+import '../../localization/localization_provider.dart';
+
+class ContactusScreen extends StatefulWidget {
+  const ContactusScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ContactusScreen> createState() => _ContactusScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ContactusScreenState extends State<ContactusScreen> {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context);
@@ -21,7 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         automaticallyImplyLeading: false,
         elevation: 0,
         title: Text(
-          localizations!.translate('personal'),
+          localizations!.translate('whoweare'),
           style: TextStyle(
               fontSize: 18,
               color: whiteColor,

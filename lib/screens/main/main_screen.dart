@@ -6,8 +6,10 @@ import 'package:decoar/localization/localization_provider.dart';
 import 'package:decoar/providers/cart_provider.dart';
 import 'package:decoar/screens/account/account_screen.dart';
 import 'package:decoar/screens/categories/categories_screen.dart';
+import 'package:decoar/screens/contactus/contactus_screen.dart';
 import 'package:decoar/screens/gallery/gallery_screen.dart';
 import 'package:decoar/screens/products/products_screen.dart';
+import 'package:decoar/screens/request/request_screen.dart';
 import 'package:decoar/screens/search/search_screen.dart';
 import 'package:decoar/theme/app_theme.dart';
 import 'package:decoar/widgets/category_tile_widget.dart';
@@ -328,17 +330,32 @@ class _MainScreenState extends State<MainScreen> {
                         )
                       ],
                     ),
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            SlideRoute(
-                              screen: const AccountScreen(),
-                              duration: const Duration(milliseconds: 500),
-                            ),
-                          );
-                        },
-                        child: const Icon(Icons.more_vert_rounded,
-                            color: whiteColor, size: 30)),
+                    Row(
+                      children: [
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                SlideRoute(
+                                  screen: const ContactusScreen(),
+                                  duration: const Duration(milliseconds: 500),
+                                ),
+                              );
+                            },
+                            child: const Icon(Icons.message,
+                                color: whiteColor, size: 28)),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                SlideRoute(
+                                  screen: const AccountScreen(),
+                                  duration: const Duration(milliseconds: 500),
+                                ),
+                              );
+                            },
+                            child: const Icon(Icons.more_vert_rounded,
+                                color: whiteColor, size: 30)),
+                      ],
+                    )
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -376,7 +393,14 @@ class _MainScreenState extends State<MainScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(
+                  SlideRoute(
+                    screen: const RequestScreen(),
+                    duration: const Duration(milliseconds: 500),
+                  ),
+                );
+              },
               child: Container(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 12.0, vertical: 12.0),

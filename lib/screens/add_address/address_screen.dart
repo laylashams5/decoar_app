@@ -4,14 +4,9 @@ import 'package:decoar/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class AddressScreen extends StatelessWidget {
+  const AddressScreen({super.key});
 
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context);
@@ -21,7 +16,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         automaticallyImplyLeading: false,
         elevation: 0,
         title: Text(
-          localizations!.translate('personal'),
+          localizations!.translate('theaddresses'),
           style: TextStyle(
               fontSize: 18,
               color: whiteColor,

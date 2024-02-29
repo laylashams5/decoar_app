@@ -1,7 +1,14 @@
+import 'package:decoar/auth/profile_screen.dart';
 import 'package:decoar/helpers/slide_route.dart';
 import 'package:decoar/localization/app_localizations.dart';
 import 'package:decoar/localization/localization_provider.dart';
+import 'package:decoar/screens/add_address/address_screen.dart';
+import 'package:decoar/screens/cart/cart_screen.dart';
 import 'package:decoar/screens/home/home_screen.dart';
+import 'package:decoar/screens/mypoints/mypoints_screen.dart';
+import 'package:decoar/screens/payment/payment_screen.dart';
+import 'package:decoar/screens/request/orders_request_screen.dart';
+import 'package:decoar/screens/settings/settings_screen.dart';
 import 'package:decoar/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,93 +55,223 @@ class _AccountScreenState extends State<AccountScreen> {
       ),
       body: ListView(
         children: <Widget>[
-          const ListTile(
-            leading: Icon(
-              Icons.person,
-              color: blackColor,
-            ),
-            title: Text(
-              'Personal details',
-              style: TextStyle(color: blackColor),
-            ),
-            subtitle: Text('First name, last name, mobile number'),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              size: 18,
-            ),
-          ),
-          const Divider(),
-          const ListTile(
-            leading: Icon(
-              Icons.location_on,
-              color: blackColor,
-            ),
-            title: Text(
-              'Delivery addresses',
-              style: TextStyle(color: blackColor),
-            ),
-            subtitle: Text('Add, edit and delete addresses'),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              size: 18,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                SlideRoute(
+                  screen: const ProfileScreen(),
+                  duration: const Duration(milliseconds: 500),
+                ),
+              );
+            },
+            child: ListTile(
+              leading: const Icon(
+                Icons.person,
+                color: blackColor,
+              ),
+              title: Text(
+                localizations.translate('personal'),
+                style: const TextStyle(color: blackColor, fontSize: 16),
+              ),
+              subtitle: Text(
+                localizations.translate('fristnamelastname'),
+                style: const TextStyle(fontSize: 14),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
             ),
           ),
           const Divider(),
-          const ListTile(
-            leading: Icon(
-              Icons.card_giftcard,
-              color: blackColor,
-            ),
-            title: Text(
-              'My points',
-              style: TextStyle(color: blackColor),
-            ),
-            subtitle: Text('Manage your points'),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              size: 18,
-            ),
-          ),
-          const Divider(),
-          const ListTile(
-            leading: Icon(
-              Icons.credit_card,
-              color: blackColor,
-            ),
-            title: Text(
-              'Payment details',
-              style: TextStyle(color: blackColor),
-            ),
-            subtitle: Text('Add,edit delete payment details'),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              size: 18,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                SlideRoute(
+                  screen: const OrdersRequestScreen(),
+                  duration: const Duration(milliseconds: 500),
+                ),
+              );
+            },
+            child: ListTile(
+              leading: const Icon(
+                Icons.list_alt,
+                color: blackColor,
+              ),
+              title: Text(
+                localizations.translate('myrequests'),
+                style: const TextStyle(color: blackColor, fontSize: 16),
+              ),
+              subtitle: Text(
+                localizations.translate('managerequests'),
+                style: const TextStyle(fontSize: 14),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
             ),
           ),
           const Divider(),
-          const ListTile(
-            leading: Icon(
-              Icons.settings,
-              color: blackColor,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                SlideRoute(
+                  screen: const AddressScreen(),
+                  duration: const Duration(milliseconds: 500),
+                ),
+              );
+            },
+            child: ListTile(
+              leading: const Icon(
+                Icons.location_on,
+                color: blackColor,
+              ),
+              title: Text(
+                localizations.translate('theaddresses'),
+                style: const TextStyle(color: blackColor, fontSize: 16),
+              ),
+              subtitle: Text(
+                localizations.translate('addeditaddress'),
+                style: const TextStyle(fontSize: 14),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
             ),
-            title: Text(
-              'Settings',
-              style: TextStyle(color: blackColor),
+          ),
+          const Divider(),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                SlideRoute(
+                  screen: const CartScreen(),
+                  duration: const Duration(milliseconds: 500),
+                ),
+              );
+            },
+            child: ListTile(
+              leading: const Icon(
+                Icons.shopping_cart,
+                color: blackColor,
+              ),
+              title: Text(
+                localizations.translate('mybaskets'),
+                style: const TextStyle(color: blackColor, fontSize: 16),
+              ),
+              subtitle: Text(
+                localizations.translate('viewmanageitem'),
+                style: const TextStyle(fontSize: 14),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
             ),
-            subtitle: Text('Languages, deleted account'),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              size: 18,
+          ),
+          const Divider(),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                SlideRoute(
+                  screen: const MyPointsScreen(),
+                  duration: const Duration(milliseconds: 500),
+                ),
+              );
+            },
+            child: ListTile(
+              leading: const Icon(
+                Icons.card_giftcard,
+                color: blackColor,
+              ),
+              title: Text(
+                localizations.translate('mypoint'),
+                style: const TextStyle(color: blackColor, fontSize: 16),
+              ),
+              subtitle: Text(
+                localizations.translate('managepoint'),
+                style: const TextStyle(fontSize: 14),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
+            ),
+          ),
+          const Divider(),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                SlideRoute(
+                  screen: const PaymentScreen(),
+                  duration: const Duration(milliseconds: 500),
+                ),
+              );
+            },
+            child: ListTile(
+              leading: const Icon(
+                Icons.credit_card,
+                color: blackColor,
+              ),
+              title: Text(
+                localizations.translate('paymentdetails'),
+                style: const TextStyle(color: blackColor, fontSize: 16),
+              ),
+              subtitle: Text(
+                localizations.translate('addeditpayment'),
+                style: const TextStyle(fontSize: 14),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
+            ),
+          ),
+          const Divider(),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                SlideRoute(
+                  screen: const SettingsScreen(),
+                  duration: const Duration(milliseconds: 500),
+                ),
+              );
+            },
+            child: ListTile(
+              leading: const Icon(
+                Icons.settings,
+                color: blackColor,
+              ),
+              title: Text(
+                localizations.translate('settings'),
+                style: const TextStyle(color: blackColor, fontSize: 16),
+              ),
+              subtitle: Text(
+                localizations.translate('languagesdeleteaccount'),
+                style: const TextStyle(fontSize: 14),
+              ),
+              trailing: const Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
             ),
           ),
           const SizedBox(height: 20),
           Center(
             child: TextButton(
-              child: const Text(
-                'Login',
-                style: TextStyle(color: primaryColor),
+              child: Text(
+                localizations.translate('login'),
+                style: const TextStyle(color: primaryColor),
               ),
-              onPressed: () {},
+              onPressed: () {
+                // Navigator.of(context).push(
+                //   SlideRoute(
+                //     screen: const (),
+                //     duration: const Duration(milliseconds: 500),
+                //   ),
+                // );
+              },
             ),
           ),
         ],

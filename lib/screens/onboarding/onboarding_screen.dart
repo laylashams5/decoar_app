@@ -110,7 +110,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: Text(
                   localizations!.translate('home'),
                   style: const TextStyle(
-                    color: blackColor,
+                    color: blueColor,
                     fontSize: 16,
                   ),
                 ),

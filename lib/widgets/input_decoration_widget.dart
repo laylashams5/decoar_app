@@ -6,6 +6,7 @@ InputDecoration inputDecoration({
 }) {
   return InputDecoration(
     hintText: hintText,
+    hintStyle: const TextStyle(fontSize: 14),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
     ),

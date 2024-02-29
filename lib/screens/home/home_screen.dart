@@ -1,6 +1,5 @@
 import 'package:decoar/localization/app_localizations.dart';
 import 'package:decoar/screens/account/account_screen.dart';
-import 'package:decoar/screens/cart/cart_screen.dart';
 import 'package:decoar/screens/main/main_screen.dart';
 import 'package:decoar/screens/orders/orders_screen.dart';
 import 'package:decoar/theme/app_theme.dart';
@@ -18,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     const MainScreen(),
-    // const CartScreen(),
     const OrdersScreen(),
     const AccountScreen(),
   ];
@@ -53,13 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             label: localizations.translate('myorders'),
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(
-          //     Icons.shopping_basket,
-          //     color: _selectedIndex == 1 ? primaryColor : greyColor,
-          //   ),
-          //   label: localizations.translate('mybaskets'),
-          // ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
